@@ -48,13 +48,13 @@
                             @php
                                 $i =1;
                             @endphp
-                    @foreach ($categories as $category)
+                    @foreach ($brands as $brand)
                      <tr>
                         <td style="width: 10%">{{$i++}}</td>
-                        <td style="width: 30%">{{$category->category_name}}</td>
+                        <td style="width: 30%">{{$brand->brand_name}}</td>
 
                         <td style="width: 20%" class="center">
-                            @if ($category->status==1)
+                            @if ($brand->status==1)
                             <span class="label label-success">Active</span>
                             @else
                             <span class="label label-danger">Deactive</span>
@@ -64,12 +64,12 @@
                         <td style="width: 40%" class="row">
                             <div class="span3"></div>
                             <div class="span2">
-                                @if ($category->status==1)
-                                <a class="btn btn-danger" href="{{url('/admin/categories/deactive/'.$category->id)}}">Deactive|
+                                @if ($brand->status==1)
+                                <a class="btn btn-danger" href="{{url('/admin/brands/deactive/'.$brand->id)}}">Deactive|
                                     <i class="halflings-icon white thumbs-down"></i>
                                 </a>
                                 @else
-                                <a class="btn btn-success" href="{{url('/admin/categories/active/'.$category->id)}}">
+                                <a class="btn btn-success" href="{{url('/admin/brands/active/'.$brand->id)}}">
                                    Active|
                                    <i class="halflings-icon white thumbs-up"></i>
                                 </a>
@@ -77,12 +77,12 @@
                            </div>
                            <div class="span3"></div>
                                 <div class="span2">
-                                    <a class="btn btn-info" href="{{url('/admin/categories/edit/'.$category->id)}}">
+                                    <a class="btn btn-info" href="{{url('/admin/brands/edit/'.$brand->id)}}">
                                         <i class="halflings-icon white edit"></i>
                                     </a>
                                 </div>
                                 <div class="span2">
-                                    <form action="{{url('/admin/categories/delete/'.$category->id)}}">
+                                    <form action="{{url('/admin/brands/delete/'.$brand->id)}}">
                                         <button class="btn btn-danger">
                                             <i class="halflings-icon white trash"></i>
                                         </button>

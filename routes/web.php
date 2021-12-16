@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\SuperAdminController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\BrandController;
 
 //Frontend route
 Route::get('/', [FrontendController::class, 'index']);
@@ -24,6 +25,19 @@ Route::get('admin/categories/edit/{cat_id}', [CategoryController::class, 'edit']
 Route::post('admin/categories-update', [CategoryController::class, 'update'])->name('update.category');
 Route::get('admin/categories/delete/{cat_id}', [CategoryController::class, 'delete']);
 
-//Status
+//Category Status
 Route::get('admin/categories/deactive/{cat_id}', [CategoryController::class, 'deactive']);
 Route::get('admin/categories/active/{cat_id}', [CategoryController::class, 'active']);
+
+
+//Brand route
+Route::get('admin/brand-create', [BrandController::class, 'create'])->name('brand.create');
+Route::post('admin/brand-store', [BrandController::class, 'store'])->name('brand.store');
+Route::get('admin/brand-show', [BrandController::class, 'index'])->name('brand.show');
+Route::get('admin/brands/edit/{id}', [BrandController::class, 'edit']);
+Route::post('admin/brands-update', [BrandController::class, 'update'])->name('update.brand');
+Route::get('admin/brands/delete/{id}', [BrandController::class, 'delete']);
+
+// Brand Status
+Route::get('admin/brands/deactive/{id}', [BrandController::class, 'deactive']);
+Route::get('admin/brands/active/{id}', [BrandController::class, 'active']);

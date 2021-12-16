@@ -66,12 +66,12 @@ class CategoryController extends Controller
     public function deactive($cat_id)
     {
         Category::find($cat_id)->update(['status' => 0]);
-        return Redirect()->back()->with('message', 'Status Updated');
+        return Redirect()->back()->with('message', 'Category Deactive!');
     }
 
     public function active($cat_id)
     {
         Category::find($cat_id)->update(['status' => 1]);
-        return Redirect()->back()->with('message', 'Status Updated');
+        return Redirect()->back()->with('message', 'Category Active!');
     }
 }

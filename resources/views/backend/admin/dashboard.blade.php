@@ -1,4 +1,7 @@
 @extends('backend.admin.admin_master')
+@section('dashboard')
+active
+@endsection
 @section('content')
 
 <div class="row-fluid">

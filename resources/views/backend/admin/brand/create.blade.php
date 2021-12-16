@@ -1,7 +1,10 @@
 @extends('backend.admin.admin_master')
 @section('content')
 
+
+<h2>Create a new Brand</h2>
 <div class="container">
+
 
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -12,6 +15,7 @@
         </ul>
     </div>
     @endif
+
 
     <div class="row-fluid sortable">
     <div class="box span12">
@@ -25,27 +29,26 @@
         @endphp
         </p>
         <div class="box-header" data-original-title>
-            <h2><i class="halflings-icon edit"></i><span class="break"></span>Edit Category</h2>
+            <h2><i class="halflings-icon edit"></i><span class="break"></span>Add Brand</h2>
 
         </div>
 
         <div class="box-content">
-            <form class="form-horizontal" action="{{route('update.category')}}" method="post">
+            <form class="form-horizontal" action="{{route('brand.store')}}" method="post">
                 @csrf
 
                 <fieldset>
-                    <input type="hidden" value="{{$category->id}}" name="id">
                     <div class="control-group">
-                        <label class="control-label" for="date01">Category Name</label>
+                        <label class="control-label" for="date01">Brand Name</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" name="category_name" @error('category_name') is-invalid  @enderror required value="{{$category->category_name}}">
+                            <input type="text" class="input-xlarge" name="brand_name" @error('brand_name') is-invalid  @enderror required placeholder="brand name">
                         </div>
                     </div>
-                    @error('category_name')
+                    @error('brand_name')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Update Category</button>
+                        <button type="submit" class="btn btn-primary">Add Brand</button>
                     </div>
                 </fieldset>
             </form>
