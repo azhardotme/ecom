@@ -19,6 +19,13 @@
                 </ul>
             </li>
 
+            <li>
+                <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Product</span></a>
+                <ul>
+                    <li><a class="submenu" href="{{url('/admin/product-create')}}"><i class="icon-file-alt"></i><span class="hidden-tablet">Add Product</span></a></li>
+                    <li><a class="submenu" href="{{url('/admin/product-show')}}"><i class="icon-file-alt"></i><span class="hidden-tablet">All Product</span></a></li>
+                </ul>
+            </li>
 
         </ul>
     </div>s

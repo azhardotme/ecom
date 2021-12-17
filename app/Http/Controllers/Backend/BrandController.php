@@ -40,16 +40,16 @@ class BrandController extends Controller
         return redirect()->back();
     }
 
-    public function edit($id)
+    public function edit($brand_id)
     {
-        $brands = Brand::find($id);
+        $brands = Brand::find($brand_id);
         return view('backend.admin.brand.edit', compact('brands'));
     }
 
     public function update(Request $request)
     {
-        $id = $request->id;
-        Brand::find($id)->update([
+        $brand_id = $request->id;
+        Brand::find($brand_id)->update([
             'brand_name' => $request->brand_name,
             'updated_at' => Carbon::now()
         ]);
@@ -57,21 +57,21 @@ class BrandController extends Controller
         return Redirect()->route('brand.show')->with('message', 'Brand Updated');
     }
 
-    public function delete($id)
+    public function delete($brand_id)
     {
-        $brand = Brand::find($id)->delete();
+        $brand = Brand::find($brand_id)->delete();
         return Redirect()->back()->with('message', 'Brand Deleted');
     }
 
-    public function deactive($id)
+    public function deactive($brand_id)
     {
-        Brand::find($id)->update(['status' => 0]);
+        Brand::find($brand_id)->update(['status' => 0]);
         return Redirect()->back()->with('message', 'Brand Deactive!');
     }
 
-    public function active($id)
+    public function active($brand_id)
     {
-        Brand::find($id)->update(['status' => 1]);
+        Brand::find($brand_id)->update(['status' => 1]);
         return Redirect()->back()->with('message', 'Brand Active!');
     }
 }
