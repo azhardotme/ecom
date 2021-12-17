@@ -27,6 +27,14 @@
                 </ul>
             </li>
 
+            <li>
+                <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Coupon</span></a>
+                <ul>
+                    <li><a class="submenu" href="{{url('/admin/coupon-create')}}"><i class="icon-file-alt"></i><span class="hidden-tablet">Add Coupon</span></a></li>
+                    <li><a class="submenu" href="{{url('/admin/coupon-show')}}"><i class="icon-file-alt"></i><span class="hidden-tablet">All Coupon </span></a></li>
+                </ul>
+            </li>
+
         </ul>
     </div>s
 </div>

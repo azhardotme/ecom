@@ -7,7 +7,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\ProductController;
-
+use App\Http\Controllers\Backend\CouponController;
 
 //Frontend route
 Route::get('/', [FrontendController::class, 'index']);
@@ -54,3 +54,14 @@ Route::get('admin/products/delete/{product_id}', [ProductController::class, 'del
 // Product Status
 Route::get('admin/products/deactive/{product_id}', [ProductController::class, 'deactive']);
 Route::get('admin/products/active/{product_id}', [ProductController::class, 'active']);
+
+//Coupon route
+Route::get('admin/coupon-create', [CouponController::class, 'create'])->name('coupon.create');
+Route::post('admin/coupon-store', [CouponController::class, 'store'])->name('coupon.store');
+Route::get('admin/coupon-show', [CouponController::class, 'index'])->name('coupon.show');
+Route::get('admin/coupons/edit/{coupon_id}', [CouponController::class, 'edit']);
+Route::post('admin/coupons-update', [CouponController::class, 'update'])->name('update.coupon');
+Route::get('admin/coupons/delete/{coupon_id}', [CouponController::class, 'delete']);
+// Coupon Status
+Route::get('admin/coupons/deactive/{coupon_id}', [CouponController::class, 'deactive']);
+Route::get('admin/coupons/active/{coupon_id}', [CouponController::class, 'active']);
