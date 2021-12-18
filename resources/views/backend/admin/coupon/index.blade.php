@@ -40,6 +40,7 @@
                       <tr>
                           <th>ID</th>
                           <th>Name</th>
+                          <th>Discount</th>
                           <th>Status</th>
                           <th style="text-align:center;">Actions</th>
                       </tr>
@@ -50,10 +51,10 @@
                             @endphp
                     @foreach ($coupons as $coupon)
                      <tr>
-                        <td style="width: 10%">{{$i++}}</td>
-                        <td style="width: 30%">{{$coupon->coupon_name}}</td>
-
-                        <td style="width: 20%" class="center">
+                        <td>{{$i++}}</td>
+                        <td>{{$coupon->coupon_name}}</td>
+                        <td>{{$coupon->discount}}%</td>
+                        <td class="center">
                             @if ($coupon->status==1)
                             <span class="label label-success">Active</span>
                             @else

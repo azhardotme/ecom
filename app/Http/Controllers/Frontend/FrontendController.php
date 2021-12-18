@@ -13,8 +13,11 @@ class FrontendController extends Controller
     public function index()
     {
         $products = Product::where('status', 1)->latest()->get();
+        $latest_products = Product::where('status', 1)->limit(3)->get();
         $categories = Category::where('status', 1)->latest()->get();
         $brands = Brand::all();
-        return view('frontend.welcome', compact('products', 'categories', 'brands'));
+        return view('frontend.welcome', compact('products', 'categories', 'brands', 'latest_products'));
     }
+
+   
 }

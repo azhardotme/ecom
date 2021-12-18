@@ -28,20 +28,26 @@
         </p>
         <div class="box-header" data-original-title>
             <h2><i class="halflings-icon edit"></i><span class="break"></span>Add Coupon</h2>
-
         </div>
-
         <div class="box-content">
             <form class="form-horizontal" action="{{route('coupon.store')}}" method="post">
                 @csrf
-
                 <fieldset>
+
                     <div class="control-group">
                         <label class="control-label" for="date01">Coupon Name</label>
                         <div class="controls">
                             <input type="text" class="input-xlarge" name="coupon_name" @error('coupon_name') is-invalid  @enderror required placeholder="coupon name">
                         </div>
                     </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="date01">Discount</label>
+                        <div class="controls">
+                            <input type="number" class="input-xlarge" name="discount" @error('discount') is-invalid  @enderror required placeholder="coupon discount %">
+                        </div>
+                    </div>
+
                     @error('brand_name')
                     <span class="text-danger">{{$message}}</span>
                     @enderror

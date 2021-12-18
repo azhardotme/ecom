@@ -8,6 +8,8 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\CartController;
+
 
 //Frontend route
 Route::get('/', [FrontendController::class, 'index']);
@@ -65,3 +67,13 @@ Route::get('admin/coupons/delete/{coupon_id}', [CouponController::class, 'delete
 // Coupon Status
 Route::get('admin/coupons/deactive/{coupon_id}', [CouponController::class, 'deactive']);
 Route::get('admin/coupons/active/{coupon_id}', [CouponController::class, 'active']);
+
+//Cart route
+Route::post('add/to-cart/{product_id}', [CartController::class, 'addToCart']);
+//Cart page
+Route::get('cart', [CartController::class, 'cart']);
+Route::get('cart/destroy/{cart_id}', [CartController::class, 'cartDestroy']);
+Route::post('cart/quantity/update/{cart_id}', [CartController::class, 'cartUpdate']);
+
+//Coupon code apply
+Route::post('apply/coupon', [CartController::class, 'couponApply']);
