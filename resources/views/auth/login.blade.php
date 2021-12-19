@@ -200,13 +200,20 @@
     </div>
 </section> --}}
 
-
+@if (Session('login_error'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+<strong>{{Session('login_error')}}</strong>
+<button type="button" class="close" data-dismiss = "alert" area-label="Close">
+    <span aria-hidden="true">&times;</span>
+</button>
+</div>
+@endif
 <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
-
+                  <a class="btn btn-success" href="{{route('register')}}">Register Now</a>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

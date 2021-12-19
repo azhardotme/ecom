@@ -116,8 +116,9 @@
              <span aria-hidden="true">&times;</span>
          </button>
          </div>
-
          @endif
+
+
          <div class="row">
              <div class="col-lg-3">
                  <div class="header__logo">
@@ -150,10 +151,10 @@
 
                          });
                          $quantity = App\Models\Cart::where('user_ip',request()->ip())->sum('qty');
-
+                         $wishqty = App\Models\Wishlist::where('user_id',Auth::id())->get();
                      @endphp
                      <ul>
-                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                         <li><a href="{{url('wishlist')}}"><i class="fa fa-heart"></i> <span>{{count($wishqty)}}</span></a></li>
                          <li><a href="{{url('cart')}}"><i class="fa fa-shopping-bag"></i> <span> {{$quantity}}</span></a></li>
                      </ul>
                      <div class="header__cart__price">Total: <span> &#2547; {{ $total }}</span>
@@ -274,7 +275,7 @@
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="{{asset($product->image_one)}}">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="{{url('add/to-wishlist/'.$product->id)}}"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                 <li>
                                     <form action="{{url('add/to-cart/'.$product->id)}}" method="POST">

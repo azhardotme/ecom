@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\CartController;
+use App\Http\Controllers\Backend\WishlistController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -80,3 +81,8 @@ Route::post('cart/quantity/update/{cart_id}', [CartController::class, 'cartUpdat
 
 //Coupon code apply
 Route::post('apply/coupon', [CartController::class, 'couponApply']);
+
+//Wishlist route
+Route::get('add/to-wishlist/{product_id}', [WishlistController::class, 'addToWishlist']);
+Route::get('wishlist', [WishlistController::class, 'wishlistPage']);
+Route::get('wishlist/destroy/{wishlist_id}', [WishlistController::class, 'wishlistDestroy']);
