@@ -86,3 +86,6 @@ Route::post('apply/coupon', [CartController::class, 'couponApply']);
 Route::get('add/to-wishlist/{product_id}', [WishlistController::class, 'addToWishlist']);
 Route::get('wishlist', [WishlistController::class, 'wishlistPage']);
 Route::get('wishlist/destroy/{wishlist_id}', [WishlistController::class, 'wishlistDestroy']);
+
+//product details
+Route::get('product/details/{product_id}', [FrontendController::class, 'productDetails']);

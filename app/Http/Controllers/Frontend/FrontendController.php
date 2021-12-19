@@ -19,5 +19,11 @@ class FrontendController extends Controller
         return view('frontend.welcome', compact('products', 'categories', 'brands', 'latest_products'));
     }
 
-   
+
+    public function productDetails($product_id)
+    {
+        $categories = Category::where('status', 1)->latest()->get();
+        $product = Product::findOrFail($product_id);
+        return view('frontend.pages.product_details', compact('product', 'categories'));
+    }
 }
