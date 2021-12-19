@@ -48,7 +48,7 @@
         </div>
 
         @endif
-        
+
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">

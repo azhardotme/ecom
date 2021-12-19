@@ -9,10 +9,13 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\CartController;
+use Illuminate\Support\Facades\Auth;
 
 
 //Frontend route
 Route::get('/', [FrontendController::class, 'index']);
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 //Admin dashboard routes
