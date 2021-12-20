@@ -10,6 +10,9 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\CartController;
 use App\Http\Controllers\Backend\WishlistController;
+use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\OrderController;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -48,7 +51,6 @@ Route::get('admin/brands/delete/{brand_id}', [BrandController::class, 'delete'])
 Route::get('admin/brands/deactive/{brand_id}', [BrandController::class, 'deactive']);
 Route::get('admin/brands/active/{brand_id}', [BrandController::class, 'active']);
 
-
 //Product route
 Route::get('admin/product-create', [ProductController::class, 'create'])->name('product.create');
 Route::post('admin/product-store', [ProductController::class, 'store'])->name('product.store');
@@ -78,9 +80,10 @@ Route::post('add/to-cart/{product_id}', [CartController::class, 'addToCart']);
 Route::get('cart', [CartController::class, 'cart']);
 Route::get('cart/destroy/{cart_id}', [CartController::class, 'cartDestroy']);
 Route::post('cart/quantity/update/{cart_id}', [CartController::class, 'cartUpdate']);
-
 //Coupon code apply
 Route::post('apply/coupon', [CartController::class, 'couponApply']);
+//Coupon Remove
+Route::get('coupon/destroy', [CartController::class, 'couponRemove']);
 
 //Wishlist route
 Route::get('add/to-wishlist/{product_id}', [WishlistController::class, 'addToWishlist']);
@@ -89,3 +92,10 @@ Route::get('wishlist/destroy/{wishlist_id}', [WishlistController::class, 'wishli
 
 //product details
 Route::get('product/details/{product_id}', [FrontendController::class, 'productDetails']);
+
+//Checkout route
+Route::get('checkout', [CheckoutController::class, 'index']);
+
+//Order route
+Route::post('place/order', [OrderController::class, 'storeOrder'])->name('place.order');
+Route::get('order/success', [OrderController::class, 'orderSuccess']);

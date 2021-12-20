@@ -24,6 +24,8 @@ class FrontendController extends Controller
     {
         $categories = Category::where('status', 1)->latest()->get();
         $product = Product::findOrFail($product_id);
-        return view('frontend.pages.product_details', compact('product', 'categories'));
+        $category_id = $product->category_id;
+        $related_product = Product::where('category_id', $category_id)->where('id', '!=', $product_id)->latest()->get();
+        return view('frontend.pages.product_details', compact('product', 'categories', 'related_product'));
     }
 }

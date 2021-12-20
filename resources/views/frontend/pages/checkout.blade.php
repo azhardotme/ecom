@@ -206,146 +206,124 @@
 </section>
 <!-- Hero Section End -->
 
-<!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="{{asset('frontend')}}/img/breadcrumb.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>Shopping Cart</h2>
-                    <div class="breadcrumb__option">
-                        <a href="./index.html">Home</a>
-                        <span>Shopping Cart</span>
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="{{asset('frontend')}}/img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Checkout</h2>
+                        <div class="breadcrumb__option">
+                            <a href="./index.html">Home</a>
+                            <span>Checkout</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- Breadcrumb Section End -->
+    </section>
+    <!-- Breadcrumb Section End -->
 
-<!-- Shoping Cart Section Begin -->
-<section class="shoping-cart spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="shoping__cart__table">
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
 
-                    @if (Session('cart_remove'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{Session('cart_remove')}}</strong>
-                    <button type="button" class="close" data-dismiss = "alert" area-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    @endif
-
-
-                    @if (Session('cart_update'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{Session('cart_update')}}</strong>
-                    <button type="button" class="close" data-dismiss = "alert" area-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    @endif
-
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="shoping__product">Products</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($carts as $cart)
-                            <tr>
-                                <td class="shoping__cart__item">
-                                    <img src="{{asset($cart->product->image_one)}}" alt="" height="70px" width="80">
-                                    <h5>{{$cart->product->product_name}}</h5>
-                                </td>
-                                <td class="shoping__cart__price">
-                                    {{$cart->product->price}} &#2547;
-                                </td>
-                                <td class="shoping__cart__quantity">
-                                    <div class="quantity">
-
-
-                                        <form action="{{url('cart/quantity/update/'.$cart->id)}}" method="POST">
-                                         @csrf
-                                        <div class="pro-qty">
-                                            <input type="text" name="qty" value="{{$cart->qty}}">
-                                        </div>
-                                        <button class="btn btn-secondary" type="submit">Update</button>
-                                    </form>
-
+            <div class="checkout__form">
+                <h4>Billing Details</h4>
+                <form action="{{route('place.order')}}" method="POST" >
+                    @csrf
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Fist Name<span>*</span></p>
+                                        <input type="text" name="shipping_first_name" value="{{Auth::user()->name}}">
                                     </div>
-                                </td>
-                                <td class="shoping__cart__total">
-                                    {{$cart->price * $cart->qty}} &#2547;
-                                </td>
-                                <td class="shoping__cart__item__close">
-                                        <a href="{{url('cart/destroy/'.$cart->id)}}">
-                                            <span class="icon_close"></span>
-                                        </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="shoping__cart__btns">
-                    <a href="{{url('/')}}" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Last Name<span>*</span></p>
+                                        <input type="text" name="shipping_last_name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Phone<span>*</span></p>
+                                        <input type="text" name="shipping_phone">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Email<span>*</span></p>
+                                        <input type="text" name="shipping_email" value="{{Auth::user()->email}}">
+                                    </div>
+                                </div>
+                            </div>
 
-                    {{-- <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                        Upadate Cart</a> --}}
-                </div>
-            </div>
-            <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <p>Address<span>*</span></p>
+                                <input type="text" placeholder="Street Address" class="checkout__input__add" name="address">
+                            </div>
+                            <div class="checkout__input">
+                                <p>State<span>*</span></p>
+                                <input type="text" name="state">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Postcode / ZIP<span>*</span></p>
+                                <input type="text" name="post_code">
+                            </div>
 
-                @if(Session::has('coupon'))
-                @else
-                <div class="shoping__continue">
-                    <div class="shoping__discount">
-                        <h5>Discount Codes</h5>
-                        <form action="{{url('apply/coupon')}}" method="POST">
-                            @csrf
-                            <input type="text" name="coupon_name" placeholder="Enter your coupon code">
-                            <button type="submit" class="site-btn">APPLY COUPON</button>
-                        </form>
+
+
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order">
+                                <h4>Your Order</h4>
+                                <div class="checkout__order__products">Products <span>Total</span></div>
+                                <ul>
+                                    @foreach ($carts as $cart)
+                                    <li>{{$cart->product->product_name}}<span>{{$cart->product->price}} &#2547;</span></li>
+                                    @endforeach
+                                </ul>
+                                @if(Session::has('coupon'))
+                                <div class="checkout__order__total">Total <span>{{$subtotal - session()->get('coupon')['discount_amount']}}&#2547;</span></div>
+                                <input type="hidden" name="coupon_discount" value="{{session()->get('coupon')['coupon_discount']}}">
+                                <input type="hidden" name="subtotal" value="{{ $subtotal }}">
+                                <input type="hidden" name="total" value="{{$subtotal - session()->get('coupon')['discount_amount']}}">
+                                @else
+                                <div class="checkout__order__subtotal">Subtotal <span>{{ $subtotal }} &#2547;</span></div>
+
+                                <input type="hidden" name="subtotal" value="{{$subtotal}}">
+                                <input type="hidden" name="total" value="{{ $subtotal }}">
+                                @endif
+
+                                <div class="checkout__input__checkbox">
+                                    <h5>Select Your Payment Method</h5>
+                                    <label for="payment">
+                                        Cash on Delivery
+                                        <input type="checkbox" id="payment" value="handcash" name="payment_type">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="checkout__input__checkbox">
+                                    <label for="paypal">
+                                        Paypal
+                                        <input type="checkbox" id="paypal" value="paypal" name="payment_type">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="site-btn">PLACE ORDER</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                @endif
-            </div>
-            <div class="col-lg-6">
-                <div class="shoping__checkout">
-                    <h5>Cart Total</h5>
-                    <ul>
-                        @if(Session::has('coupon'))
-                        <li>Subtotal <span>{{$subtotal}} &#2547;</span></li>
-                        </span></li>
-
-                        <li>Coupon <span>{{ session()->get('coupon')['coupon_name']}} <a href="{{url('coupon/destroy')}}">X</a></span></li>
-                        <li>Discount <span> {{session()->get('coupon')['coupon_discount']}}%
-                        ({{ session()->get('coupon')['discount_amount']}} &#2547;) </span></li>
-                        <li>Total <span> &#2547; {{$subtotal - session()->get('coupon')['discount_amount']}}</span></li>
-                        @else
-                        <li>Total <span>{{ $subtotal }} &#2547;</span></li>
-                        @endif
-                    </ul>
-                    <a href="{{url('checkout')}}" class="primary-btn">PROCEED TO CHECKOUT</a>
-                </div>
+                </form>
             </div>
         </div>
-    </div>
-</section>
-<!-- Shoping Cart Section End -->
+    </section>
+    <!-- Checkout Section End -->
+
+
 @endsection

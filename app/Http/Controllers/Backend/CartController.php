@@ -62,13 +62,26 @@ class CartController extends Controller
     {
         $check = Coupon::where('coupon_name', $request->coupon_name)->first();
         if ($check) {
+            $subtotal = Cart::all()->where('user_ip', request()->ip())->sum(function ($totall) {
+                return $totall->price * $totall->qty;
+            });
             Session::put('coupon', [
                 'coupon_name' => $check->coupon_name,
                 'coupon_discount' => $check->discount,
+                'discount_amount' => $subtotal *  ($check->discount / 100),
             ]);
             return Redirect()->back()->with('cart_update', 'Coupon Applied!');
         } else {
             return Redirect()->back()->with('cart_remove', 'Invalid Coupon!');
+        }
+    }
+
+    //Remove Coupon
+    public function couponRemove()
+    {
+        if (Session::has('coupon')) {
+            session()->forget('coupon');
+            return Redirect()->back()->with('cart_remove', 'Coupon Remove!');
         }
     }
 }

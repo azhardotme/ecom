@@ -32,7 +32,7 @@
              <a href="#"><i class="fa fa-user"></i> Login</a>
          </div>
      </div>
-     <nav class="humberger__menu__nav mobile-menu">
+     {{-- <nav class="humberger__menu__nav mobile-menu">
          <ul>
              <li class="active"><a href="./index.html">Home</a></li>
              <li><a href="./shop-grid.html">Shop</a></li>
@@ -47,7 +47,7 @@
              <li><a href="./blog.html">Blog</a></li>
              <li><a href="./contact.html">Contact</a></li>
          </ul>
-     </nav>
+     </nav> --}}
      <div id="mobile-menu-wrap"></div>
      <div class="header__top__right__social">
          <a href="#"><i class="fa fa-facebook"></i></a>
